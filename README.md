@@ -1,6 +1,6 @@
-# Battleship
+# TicTacToe
 
-Dies ist das beliebte Spiel "Schiffe versenken". Es ist eine kleine Konsolen-Anwendung für zwei Spieler.
+Dies ist das beliebte Spiel "TicTacToe". Es ist eine kleine Konsolen-Anwendung für zwei Spieler. Geschrieben in C++.
 
 ## Installation
 
@@ -8,16 +8,16 @@ Für dieses Routine wird der GCC Compiler benötigt.
 
 ```shell
 # 1. dieses Git Repo clonen
-git clone https://source.ai.fh-erfurt.de/ha9384dr/battleship.git
+git clone https://source.ai.fh-erfurt.de/ha9384dr/TicTacToe.git
 
 # 2. in den Projektordner wechseln
-cd battleship
+cd TicTacToe
 
 # 3. das Projekt compilieren
 make
 
 # 4. compiliertes Projekt ausführen
-./Battleship
+./TicTacToe
 ```
 
 Alternativ können auch alle Dateien im Ordner `src` in eine beliebige Entwicklungsumgebung importiert und dann compiliert und ausgeführt werden.
