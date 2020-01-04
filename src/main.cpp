@@ -33,6 +33,7 @@ void endGame(const SGame &game) {
 
 int main() {
     SGame game;
+    
     initGame(game);
 
     while (!isGameOver(game)) {
