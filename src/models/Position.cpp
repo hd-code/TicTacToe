@@ -3,6 +3,6 @@
 // -----------------------------------------------------------------------------
 
 bool isPositionValid(const SPosition &position) {
-    return MIN_ROW <= position.row && position.row <= MAX_ROW
-        && MIN_COL <= position.col && position.col <= MAX_COL;
+    return MIN_ROW_COL <= position.row && position.row <= MAX_ROW_COL
+        && MIN_ROW_COL <= position.col && position.col <= MAX_ROW_COL;
 }

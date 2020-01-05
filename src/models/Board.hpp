@@ -5,7 +5,7 @@
 
 // -----------------------------------------------------------------------------
 
-const int BOARD_ARRAY_SIZE = NUM_OF_ROWS * NUM_OF_COLS;
+const int BOARD_ARRAY_SIZE = NUM_OF_ROWS_COLS * NUM_OF_ROWS_COLS;
 
 struct SBoard {
     SPlayer* fields[BOARD_ARRAY_SIZE]; // nullptr means field is empty
@@ -24,5 +24,5 @@ bool isFieldFree(const SBoard &board, const SPosition &position);
 
 bool areThereStillEmptyFields(const SBoard &board);
 
-// returns nullptr if no player has three in a row
-SPlayer* getPlayerWithThreeInALine(const SBoard &board);
+// returns nullptr if no player has a full line
+SPlayer* getPlayerWithAFullLine(const SBoard &board);

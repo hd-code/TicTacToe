@@ -27,7 +27,7 @@ void setNextPlayerOnTurn(SGame &game) {
 }
 
 SPlayer* getWinner(const SGame &game) {
-    return getPlayerWithThreeInALine(game.board);
+    return getPlayerWithAFullLine(game.board);
 }
 
 bool isGameOver(const SGame &game) {
