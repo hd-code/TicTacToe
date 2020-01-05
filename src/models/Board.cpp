@@ -6,15 +6,6 @@ int getFieldIndex(const SPosition &position) {
     return position.row * NUM_OF_COLS + position.col;
 }
 
-void getPlayersAlongLine(const SBoard &board, SPlayer* result[], int numOfResults, const SPosition &startPos, int rowOffset, int colOffset) {
-    SPosition pos = startPos;
-    for (int i = 0; i < numOfResults; i++) {
-        result[i] = getPlayerOnField(board, pos);
-        pos.row += rowOffset;
-        pos.col += colOffset;
-    }
-}
-
 bool areAllPlayersTheSame(SPlayer* players[], int numOfPlayers) {
     for (int i = 1; i < numOfPlayers; i++) {
         if (players[i-1] != players[i]) {
@@ -22,6 +13,58 @@ bool areAllPlayersTheSame(SPlayer* players[], int numOfPlayers) {
         }
     }
     return true;
+}
+
+const int WINNING_NUM_OF_PLAYERS = NUM_OF_ROWS < NUM_OF_COLS ? NUM_OF_ROWS : NUM_OF_COLS;
+
+SPlayer* getPlayerWithThreeInARow(const SBoard &board) {
+    SPlayer* tmp[WINNING_NUM_OF_PLAYERS];
+
+    for (int i = MIN_ROW; i <= MAX_ROW; i++) {
+        for (int j = MIN_COL; j <= MAX_COL; j++) {
+            tmp[j] = getPlayerOnField(board, {i,j});
+        }
+        if (areAllPlayersTheSame(tmp, WINNING_NUM_OF_PLAYERS)) {
+            return tmp[0];
+        }
+    }
+
+    return nullptr;
+}
+
+SPlayer* getPlayerWithThreeInACol(const SBoard &board) {
+    SPlayer* tmp[WINNING_NUM_OF_PLAYERS];
+
+    for (int i = MIN_COL; i <= MAX_COL; i++) {
+        for (int j = MIN_ROW; j <= MAX_ROW; j++) {
+            tmp[j] = getPlayerOnField(board, {j,i});
+        }
+        if (areAllPlayersTheSame(tmp, WINNING_NUM_OF_PLAYERS)) {
+            return tmp[0];
+        }
+    }
+
+    return nullptr;
+}
+
+SPlayer* getPlayerWithThreeInADiagonal(const SBoard &board) {
+    SPlayer* tmp[WINNING_NUM_OF_PLAYERS];
+
+    for (int i = MIN_ROW; i < WINNING_NUM_OF_PLAYERS; i++) {
+        tmp[i] = getPlayerOnField(board, {i,i});
+    }
+    if (areAllPlayersTheSame(tmp, WINNING_NUM_OF_PLAYERS)) {
+        return tmp[0];
+    }
+
+    for (int i = MIN_ROW; i < WINNING_NUM_OF_PLAYERS; i++) {
+        tmp[i] = getPlayerOnField(board, {i, MAX_COL - i});
+    }
+    if (areAllPlayersTheSame(tmp, WINNING_NUM_OF_PLAYERS)) {
+        return tmp[0];
+    }
+
+    return nullptr;
 }
 
 // -----------------------------------------------------------------------------
@@ -55,32 +98,18 @@ bool areThereStillEmptyFields(const SBoard &board) {
     return false;
 }
 
-SPlayer* getPlayerWithThreeInARow(const SBoard &board) {
-    SPlayer* tmp[3];
-    
-    for (int row = 0; row < NUM_OF_ROWS; row++) {
-        getPlayersAlongLine(board, tmp, 3, {row,0}, 0, 1);
-        if (areAllPlayersTheSame(tmp, 3) && tmp[0] != nullptr) {
-            return tmp[0];
-        }
-    }
+SPlayer* getPlayerWithThreeInALine(const SBoard &board) {
+    SPlayer* result = nullptr;
 
-    for (int col = 0; col < NUM_OF_COLS; col++) {
-        getPlayersAlongLine(board, tmp, 3, {0,col}, 1, 0);
-        if (areAllPlayersTheSame(tmp, 3) && tmp[0] != nullptr) {
-            return tmp[0];
-        }
-    }
-    
-    getPlayersAlongLine(board, tmp, 3, {0,0}, 1, 1);
-    if (areAllPlayersTheSame(tmp, 3) && tmp[0] != nullptr) {
-        return tmp[0];
-    }
+    result = getPlayerWithThreeInARow(board);
+    if (result != nullptr)
+        return result;
 
-    getPlayersAlongLine(board, tmp, 3, {0,2}, 1, -1);
-    if (areAllPlayersTheSame(tmp, 3) && tmp[0] != nullptr) {
-        return tmp[0];
-    }
+    result = getPlayerWithThreeInACol(board);
+    if (result != nullptr)
+        return result;
 
-    return nullptr;
+    result = getPlayerWithThreeInADiagonal(board);
+
+    return result;
 }

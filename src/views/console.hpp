@@ -12,6 +12,6 @@ void renderBoard(const SBoard &board);
 
 SPosition askUserForPosition(const char msg[]);
 
-void renderEnd();
+void renderGameOverMsg();
 
 void renderWinner(const SPlayer* winner);

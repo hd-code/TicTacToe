@@ -1,4 +1,4 @@
-#include "console.hpp"
+#include "Console.hpp"
 #include "../lib/HDio.hpp"
 
 // -----------------------------------------------------------------------------
@@ -14,8 +14,7 @@ SPosition inputToPosition(char input[3]) {
 
 void renderWelcome() {
     clearScreen();
-    println("TIC TAC TOE");
-    askForEnter("Herzlich Willkommen (ENTER drücken");
+    askForEnter("Herzlich Willkommen zu TIC TAC TOE (ENTER drücken)");
 }
 
 void renderTurnBegin(const SPlayer &player, const SBoard &board) {
@@ -31,8 +30,13 @@ void renderTurnBegin(const SPlayer &player, const SBoard &board) {
 }
 
 void renderBoard(const SBoard &board) {
+    print(" ");
+    for (int i = 0; i < NUM_OF_COLS; i++) {
+        print(" ", i+1);
+    }
+    println();
+
     char rowName = "a"[0];
-    println("  1 2 3");
     for (int i = 0; i < NUM_OF_ROWS; i++) {
         print(rowName);
         for (int j = 0; j < NUM_OF_COLS; j++) {
@@ -43,7 +47,7 @@ void renderBoard(const SBoard &board) {
         println();
         rowName++;
     }
-
+    
     println();
 }
 
@@ -55,7 +59,7 @@ SPosition askUserForPosition(const char msg[]) {
     return inputToPosition(input);
 }
 
-void renderEnd() {
+void renderGameOverMsg() {
     clearScreen();
     println("DAS SPIEL IST VORBEI!");
     println();
