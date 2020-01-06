@@ -6,24 +6,30 @@ int getFieldIndex(const SPosition &position) {
     return position.row * NUM_OF_ROWS_COLS + position.col;
 }
 
+// returns also false, when all entries in players[] are nullptr
 bool areAllPlayersTheSame(SPlayer* players[], int numOfPlayers) {
+    if (players[0] == nullptr)
+        return false;
+
     for (int i = 1; i < numOfPlayers; i++) {
         if (players[i-1] != players[i]) {
             return false;
         }
     }
+
     return true;
 }
 
 SPlayer* getPlayerWithAFullRow(const SBoard &board) {
-    SPlayer* tmp[NUM_OF_ROWS_COLS];
+    SPlayer* row[NUM_OF_ROWS_COLS];
 
     for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
         for (int j = MIN_ROW_COL; j <= MAX_ROW_COL; j++) {
-            tmp[j] = getPlayerOnField(board, {i,j});
+            row[j] = getPlayerOnField(board, {i,j});
         }
-        if (areAllPlayersTheSame(tmp, NUM_OF_ROWS_COLS)) {
-            return tmp[0];
+        
+        if (areAllPlayersTheSame(row, NUM_OF_ROWS_COLS)) {
+            return row[0];
         }
     }
 
@@ -31,14 +37,14 @@ SPlayer* getPlayerWithAFullRow(const SBoard &board) {
 }
 
 SPlayer* getPlayerWithAFullCol(const SBoard &board) {
-    SPlayer* tmp[NUM_OF_ROWS_COLS];
+    SPlayer* col[NUM_OF_ROWS_COLS];
 
     for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
         for (int j = MIN_ROW_COL; j <= MAX_ROW_COL; j++) {
-            tmp[j] = getPlayerOnField(board, {j,i});
+            col[j] = getPlayerOnField(board, {j,i});
         }
-        if (areAllPlayersTheSame(tmp, NUM_OF_ROWS_COLS)) {
-            return tmp[0];
+        if (areAllPlayersTheSame(col, NUM_OF_ROWS_COLS)) {
+            return col[0];
         }
     }
 
@@ -46,21 +52,16 @@ SPlayer* getPlayerWithAFullCol(const SBoard &board) {
 }
 
 SPlayer* getPlayerWithAFullDiagonal(const SBoard &board) {
-    SPlayer* tmp[NUM_OF_ROWS_COLS];
+    SPlayer*  leftDiagonal[NUM_OF_ROWS_COLS];
+    SPlayer* rightDiagonal[NUM_OF_ROWS_COLS];
 
-    for (int i = MIN_ROW_COL; i < MAX_ROW_COL; i++) {
-        tmp[i] = getPlayerOnField(board, {i,i});
-    }
-    if (areAllPlayersTheSame(tmp, NUM_OF_ROWS_COLS)) {
-        return tmp[0];
+    for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
+         leftDiagonal[i] = getPlayerOnField(board, { i, i });
+        rightDiagonal[i] = getPlayerOnField(board, { i, MAX_ROW_COL - i });
     }
 
-    for (int i = MIN_ROW_COL; i < MAX_ROW_COL; i++) {
-        tmp[i] = getPlayerOnField(board, {i, MAX_ROW_COL - i});
-    }
-    if (areAllPlayersTheSame(tmp, NUM_OF_ROWS_COLS)) {
-        return tmp[0];
-    }
+    if (areAllPlayersTheSame( leftDiagonal, NUM_OF_ROWS_COLS)) return  leftDiagonal[0];
+    if (areAllPlayersTheSame(rightDiagonal, NUM_OF_ROWS_COLS)) return rightDiagonal[0];
 
     return nullptr;
 }
