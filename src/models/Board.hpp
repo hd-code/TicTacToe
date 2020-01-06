@@ -17,7 +17,7 @@ void resetBoard(SBoard &board);
 
 void setPlayerOnField(SBoard &board, SPlayer* player, const SPosition &position);
 
-// returns nullptr if no player is one this field
+// returns nullptr if no player is on this field
 SPlayer* getPlayerOnField(const SBoard &board, const SPosition &position);
 
 bool isFieldFree(const SBoard &board, const SPosition &position);
