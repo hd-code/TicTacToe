@@ -4,7 +4,7 @@ Dies ist das beliebte Spiel "TicTacToe". Es ist eine kleine Konsolen-Anwendung f
 
 ## Installation
 
-Für dieses Routine wird der GCC Compiler benötigt.
+Für diese Routine wird der GCC Compiler benötigt.
 
 ```shell
 # 1. dieses Git Repo clonen
