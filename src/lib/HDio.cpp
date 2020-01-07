@@ -30,28 +30,25 @@ void clearScreen() {
 
 /* ----------------------------- Get User Input ----------------------------- */
 
+// helper function, not part of public library
+void handleBadInput() {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
 template <typename T>
 T getUserInput() {
     T result;
-    if ( !(std::cin >> result) ) {
-        std::cin.clear(); //clear bad input flag
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
-    }
+    if (!(std::cin >> result)) handleBadInput();
     return result;
 }
 
 void getUserInput(char result[]) {
-    if ( !(std::cin >> result) ) {
-        std::cin.clear(); //clear bad input flag
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
-    }
+    if (!(std::cin >> result)) handleBadInput();
 }
 
 void getUserInput(char result[], size_t maxLen) {
-    if( !(std::cin.getline(result, maxLen)) ) {
-        std::cin.clear(); //clear bad input flag
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
-    }
+    if(!(std::cin.getline(result, maxLen))) handleBadInput();
 }
 
 void getEnter() {
