@@ -28,7 +28,7 @@ void clearScreen();
 
 // Waits for the user to enter a value. The entered value is then returned by
 // this function. If the user enters anything, that can't be interpreted, the
-// function returns the default value of the given datatype.
+// function returns the default value of the given data-type.
 //
 // usage:
 //      int   number  = getUserInput<int>();
@@ -41,7 +41,8 @@ T getUserInput();
 // saved into 'result'.
 //
 // Attention: this method is unsafe as the user can input as many characters as
-// he/she likes. This may cause a buffer overflow.
+// he/she likes. This may cause a buffer overflow. To prevent that, see next
+// overload for this function.
 //
 // usage:
 //      char input[20];
@@ -51,8 +52,9 @@ void getUserInput(char result[]);
 // Waits for the user to enter any number of characters. The user input is then
 // saved into 'result'. 'maxLen' specifies the maximum length of the user input
 // (including the NULL-terminating character). The user may enter a longer
-// message. However, the input is then clipped accordingly. This method is safe
-// to use.
+// message. However, the input is then clipped accordingly.
+//
+// This method is safe to use.
 //
 // usage:
 //      int maxInputSize = 20
@@ -68,7 +70,7 @@ void getEnter();
 // Displays the given message and waits for the user to enter a value. The
 // entered value is then returned by this function. If the user enters anything,
 // that can't be interpreted, the function returns the default value of the
-// given datatype.
+// given data-type.
 //
 // usage:
 //      int   number  = askForInput<int>("Please enter a number");
@@ -81,7 +83,8 @@ T askForInput(const char msg[]);
 // characters. The user input is then saved into 'result'.
 //
 // Attention: This method is unsafe as the user can input as many characters as
-// he/she likes. This may cause a buffer overflow.
+// he/she likes. This may cause a buffer overflow. To prevent that, see next
+// overload for this function.
 //
 // usage:
 //      char input[20];
@@ -92,7 +95,9 @@ void askForInput(const char msg[], char result[]);
 // characters. The user input is then saved into 'result'. 'maxLen' specifies
 // the maximum length of the user input (including the NULL-terminating
 // character). The user may enter a longer message. However, the input is then
-// clipped accordingly. This method is safe to use.
+// clipped accordingly.
+//
+// This method is safe to use.
 //
 // usage:
 //      int maxInputSize = 20
