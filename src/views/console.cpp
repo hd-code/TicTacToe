@@ -31,15 +31,15 @@ void renderTurnBegin(const SPlayer &player, const SBoard &board) {
 
 void renderBoard(const SBoard &board) {
     print(" ");
-    for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
+    for (int i = 0; i < NUM_OF_ROWS_COLS; i++) {
         print(" ", i+1);
     }
     println();
 
     char rowName = "a"[0];
-    for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
+    for (int i = 0; i < NUM_OF_ROWS_COLS; i++) {
         print(rowName);
-        for (int j = MIN_ROW_COL; j <= MAX_ROW_COL; j++) {
+        for (int j = 0; j < NUM_OF_ROWS_COLS; j++) {
             SPlayer* field = getPlayerOnField(board, {i,j});
             char sign = field == nullptr ? "_"[0] : field->sign;
             print(" ", sign);

@@ -23,8 +23,8 @@ bool areAllPlayersTheSame(SPlayer* players[], int numOfPlayers) {
 SPlayer* getPlayerWithAFullRow(const SBoard &board) {
     SPlayer* row[NUM_OF_ROWS_COLS];
 
-    for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
-        for (int j = MIN_ROW_COL; j <= MAX_ROW_COL; j++) {
+    for (int i = 0; i < NUM_OF_ROWS_COLS; i++) {
+        for (int j = 0; j < NUM_OF_ROWS_COLS; j++) {
             row[j] = getPlayerOnField(board, {i,j});
         }
         
@@ -39,8 +39,8 @@ SPlayer* getPlayerWithAFullRow(const SBoard &board) {
 SPlayer* getPlayerWithAFullCol(const SBoard &board) {
     SPlayer* col[NUM_OF_ROWS_COLS];
 
-    for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
-        for (int j = MIN_ROW_COL; j <= MAX_ROW_COL; j++) {
+    for (int i = 0; i < NUM_OF_ROWS_COLS; i++) {
+        for (int j = 0; j < NUM_OF_ROWS_COLS; j++) {
             col[j] = getPlayerOnField(board, {j,i});
         }
         if (areAllPlayersTheSame(col, NUM_OF_ROWS_COLS)) {
@@ -55,7 +55,7 @@ SPlayer* getPlayerWithAFullDiagonal(const SBoard &board) {
     SPlayer*  leftDiagonal[NUM_OF_ROWS_COLS];
     SPlayer* rightDiagonal[NUM_OF_ROWS_COLS];
 
-    for (int i = MIN_ROW_COL; i <= MAX_ROW_COL; i++) {
+    for (int i = 0; i < NUM_OF_ROWS_COLS; i++) {
          leftDiagonal[i] = getPlayerOnField(board, { i, i });
         rightDiagonal[i] = getPlayerOnField(board, { i, MAX_ROW_COL - i });
     }
