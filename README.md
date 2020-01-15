@@ -2,9 +2,9 @@
 
 Dieses Projekt ist für die Studenten des ersten Fachsemesters 'Angewandte Informatik' an der Fachhochschule Erfurt. Die haben mich gebeten, einen Vortrag zum Thema 'Clean Code' zu halten.
 
-In diesem Repo im Ordner `docs` befindet dich die PowerPoint Präsentation zum Vortrag.
+In diesem Repo im Ordner `docs` befindet sich die PowerPoint Präsentation zum Vortrag.
 
-Im Ordner `src` ist ein einfaches Spiel 'TicTacToe' zu finden. Es ist der bekannt Klassiker für zwei Spieler. Das Projekt ist in C++ implementiert. Gespielt wird mittels der Konsole.
+Im Ordner `src` ist ein einfaches Spiel zu finden. Es ist der bekannt Klassiker 'TicTacToe' für zwei Spieler. Das Projekt ist in C++ implementiert. Gespielt wird mittels der Konsole.
 
 Das Spiel ist mitunter etwas 'over-engineered'. Ich habe also sehr penibel die Dateien und Zuständigkeiten von einander getrennt, um die Prinzipien des 'Clean Code' aus dem Vortrag zeigen zu können.
 
