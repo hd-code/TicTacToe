@@ -16,7 +16,7 @@ Dazu bitte die Konsole öffnen und folgende Befehle ausführen:
 
 ```shell
 # 1. dieses Git Repo clonen
-git clone https://source.ai.fh-erfurt.de/ha9384dr/TicTacToe.git
+git clone https://github.com/hd-code/TicTacToe.git
 
 # 2. in den Projektordner wechseln
 cd TicTacToe
